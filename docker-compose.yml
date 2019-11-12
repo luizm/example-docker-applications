@@ -1,0 +1,19 @@
+version: "3.3"
+services:
+  web:
+    build: ./web
+    image: example-docker-applications/web:latest
+    ports:
+      - "8080:5000"
+    environment:
+      PORT: 5000
+      API_HOST: http://api:5000
+    links:
+      - "api:api"
+  api:
+    build: ./api
+    image: example-docker-applications/api:latest
+    ports:
+      - "5000:5000"
+    environment:
+      PORT: 5000
